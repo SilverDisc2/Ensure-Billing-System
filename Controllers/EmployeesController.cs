@@ -12,6 +12,8 @@ namespace MVCProjectOOP.Controllers
 {
     public class EmployeesController : Controller
     {
+        
+
         private EBSEntities db = new EBSEntities();
 
         // GET: Employees
@@ -123,5 +125,8 @@ namespace MVCProjectOOP.Controllers
             }
             base.Dispose(disposing);
         }
+
+        
     }
+    
 }

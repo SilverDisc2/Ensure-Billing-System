@@ -12,15 +12,15 @@ namespace MVCProjectOOP.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Employee
+    public partial class Employee:User
     {
         public int E_ID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Phone { get; set; }
-        public string Password { get; set; }
-        public string Address { get; set; }
-        public string City { get; set; }
-        public string ZIPCode { get; set; }
+        //public string FirstName { get; set; }
+        //public string LastName { get; set; }
+        //public string Phone { get; set; }
+        //public string Password { get; set; }
+        //public string Address { get; set; }
+        //public string City { get; set; }
+        //public string ZIPCode { get; set; }
     }
 }
