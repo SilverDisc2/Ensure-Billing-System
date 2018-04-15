@@ -10,114 +10,112 @@ using MVCProjectOOP.Models;
 
 namespace MVCProjectOOP.Controllers
 {
-    public class PaymentsController : Controller
+    public class CodesController : Controller
     {
         private EBSEntities db = new EBSEntities();
 
-        // GET: Payments
+        // GET: Codes
         public ActionResult Index()
         {
-            return View(db.Payments.ToList());
+            var codes = db.Codes.Include(c => c.Client);
+            return View(codes.ToList());
         }
 
-        // GET: Payments/Details/5
+        // GET: Codes/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Payment payment = db.Payments.Find(id);
-            if (payment == null)
+            Code code = db.Codes.Find(id);
+            if (code == null)
             {
                 return HttpNotFound();
             }
-            return View(payment);
+            return View(code);
         }
 
-        // GET: Payments/Create
+        // GET: Codes/Create
         public ActionResult Create()
         {
-            
+            ViewBag.C_ID = new SelectList(db.Clients, "C_ID", "FirstName");
             return View();
         }
 
-        public ActionResult PaymentColection()
-        {
-
-            return View();
-        }
-
-        // POST: Payments/Create
+        // POST: Codes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "P_ID,Ammount,Paid,Due,Date")] Payment payment)
+        public ActionResult Create([Bind(Include = "coID,month,C_ID,code1")] Code code)
         {
             if (ModelState.IsValid)
             {
-                db.Payments.Add(payment);
+                db.Codes.Add(code);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(payment);
+            ViewBag.C_ID = new SelectList(db.Clients, "C_ID", "FirstName", code.C_ID);
+            return View(code);
         }
 
-        // GET: Payments/Edit/5
+        // GET: Codes/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Payment payment = db.Payments.Find(id);
-            if (payment == null)
+            Code code = db.Codes.Find(id);
+            if (code == null)
             {
                 return HttpNotFound();
             }
-            return View(payment);
+            ViewBag.C_ID = new SelectList(db.Clients, "C_ID", "FirstName", code.C_ID);
+            return View(code);
         }
 
-        // POST: Payments/Edit/5
+        // POST: Codes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "P_ID,Ammount,Paid,Due,Date")] Payment payment)
+        public ActionResult Edit([Bind(Include = "coID,month,C_ID,code1")] Code code)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(payment).State = EntityState.Modified;
+                db.Entry(code).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(payment);
+            ViewBag.C_ID = new SelectList(db.Clients, "C_ID", "FirstName", code.C_ID);
+            return View(code);
         }
 
-        // GET: Payments/Delete/5
+        // GET: Codes/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Payment payment = db.Payments.Find(id);
-            if (payment == null)
+            Code code = db.Codes.Find(id);
+            if (code == null)
             {
                 return HttpNotFound();
             }
-            return View(payment);
+            return View(code);
         }
 
-        // POST: Payments/Delete/5
+        // POST: Codes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Payment payment = db.Payments.Find(id);
-            db.Payments.Remove(payment);
+            Code code = db.Codes.Find(id);
+            db.Codes.Remove(code);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

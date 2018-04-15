@@ -151,6 +151,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
+    <Compile Include="Controllers\CodesController.cs" />
     <Compile Include="Controllers\CompaniesController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -159,6 +160,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Client.cs">
+      <DependentUpon>EBS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Code.cs">
       <DependentUpon>EBS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Company.cs">
@@ -189,11 +193,17 @@
       <DependentUpon>EBS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\U_Code.cs">
+      <DependentUpon>EBS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\StyleSheet1.css" />
+    <Content Include="Content\StyleSheet2.css" />
+    <Content Include="Content\StyleSheet3.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -265,7 +275,20 @@
     <Content Include="Views\Employees\Details.cshtml" />
     <Content Include="Views\Employees\Edit.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
+    <Content Include="Views\Payments\PaymentColection.cshtml" />
+    <Content Include="Views\Shared\_LayoutE.cshtml" />
+    <Content Include="Views\Shared\_LayoutC.cshtml" />
     <Content Include="Views\Companies\Login.cshtml" />
+    <Content Include="Views\Employees\Login.cshtml" />
+    <Content Include="Views\Clients\Login.cshtml" />
+    <Content Include="Views\Codes\Create.cshtml" />
+    <Content Include="Views\Codes\Delete.cshtml" />
+    <Content Include="Views\Codes\Details.cshtml" />
+    <Content Include="Views\Codes\Edit.cshtml" />
+    <Content Include="Views\Codes\Index.cshtml" />
+    <Content Include="Views\Employees\PaymentCollection.cshtml" />
+    <Content Include="Views\Shared\_LayoutComp.cshtml" />
+    <Content Include="Views\Clients\PaymentCollection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

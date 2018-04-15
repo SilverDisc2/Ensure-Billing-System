@@ -30,5 +30,7 @@ namespace MVCProjectOOP.Models
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<U_Code> U_Code { get; set; }
+        public virtual DbSet<Code> Codes { get; set; }
     }
 }

@@ -13,8 +13,7 @@
     <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="ZIPCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="UCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Codes" Relationship="EBSModel.FK__Code__C_ID__29221CFB" FromRole="Client" ToRole="Code" />
   </EntityType>
   <EntityType Name="Company">
     <Key>
@@ -70,5 +69,41 @@
     <EntitySet Name="Employees" EntityType="Self.Employee" />
     <EntitySet Name="Payments" EntityType="Self.Payment" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="U_Code" EntityType="EBSModel.U_Code" />
+    <EntitySet Name="Codes" EntityType="EBSModel.Code" />
+    <AssociationSet Name="FK__Code__C_ID__29221CFB" Association="EBSModel.FK__Code__C_ID__29221CFB">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Code" EntitySet="Codes" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="U_Code">
+    <Key>
+      <PropertyRef Name="code_id" />
+    </Key>
+    <Property Name="code_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ucode" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="month" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Code">
+    <Key>
+      <PropertyRef Name="coID" />
+    </Key>
+    <Property Name="coID" Type="Int32" Nullable="false" />
+    <Property Name="month" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="C_ID" Type="Int32" Nullable="false" />
+    <Property Name="code1" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Client" Relationship="EBSModel.FK__Code__C_ID__29221CFB" FromRole="Code" ToRole="Client" />
+  </EntityType>
+  <Association Name="FK__Code__C_ID__29221CFB">
+    <End Type="EBSModel.Client" Role="Client" Multiplicity="1" />
+    <End Type="EBSModel.Code" Role="Code" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="C_ID" />
+      </Principal>
+      <Dependent Role="Code">
+        <PropertyRef Name="C_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

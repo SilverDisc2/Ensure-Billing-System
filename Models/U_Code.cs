@@ -12,17 +12,10 @@ namespace MVCProjectOOP.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Company:User
+    public partial class U_Code
     {
-        public int userID { get; set; }
-        public string OwnerName { get; set; }
-        public string CompanyName { get; set; }
-        public string Type { get; set; }
-        //public string Phone { get; set; }
-        //public string Email { get; set; }
-        //public string Password { get; set; }
-        //public string Address { get; set; }
-        //public string City { get; set; }
-        //public string ZIPCode { get; set; }
+        public int code_id { get; set; }
+        public string ucode { get; set; }
+        public string month { get; set; }
     }
 }

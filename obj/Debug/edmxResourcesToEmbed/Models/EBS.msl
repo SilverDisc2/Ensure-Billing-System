@@ -13,8 +13,6 @@
           <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="City" ColumnName="City" />
           <ScalarProperty Name="ZIPCode" ColumnName="ZIPCode" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="UCode" ColumnName="UCode" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -67,6 +65,25 @@
           <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
           <ScalarProperty Name="version" ColumnName="version" />
           <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="U_Code">
+      <EntityTypeMapping TypeName="EBSModel.U_Code">
+        <MappingFragment StoreEntitySet="U_Code">
+          <ScalarProperty Name="month" ColumnName="month" />
+          <ScalarProperty Name="ucode" ColumnName="ucode" />
+          <ScalarProperty Name="code_id" ColumnName="code_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Codes">
+      <EntityTypeMapping TypeName="EBSModel.Code">
+        <MappingFragment StoreEntitySet="Code">
+          <ScalarProperty Name="code1" ColumnName="code" />
+          <ScalarProperty Name="C_ID" ColumnName="C_ID" />
+          <ScalarProperty Name="month" ColumnName="month" />
+          <ScalarProperty Name="coID" ColumnName="coID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

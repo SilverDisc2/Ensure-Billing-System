@@ -2,6 +2,8 @@
 
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutC.cshtml";
+
 }
 
 <h2>Details</h2>
@@ -10,6 +12,15 @@
     <h4>Client</h4>
     <hr />
     <dl class="dl-horizontal">
+
+        <dt>
+                Client ID
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.C_ID)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.FirstName)
         </dt>
@@ -74,21 +85,7 @@
             @Html.DisplayFor(model => model.ZIPCode)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UCode)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UCode)
-        </dd>
 
     </dl>
 </div>

@@ -10,6 +10,9 @@
         <EntityTypeShape EntityType="EBSModel.Employee" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="EBSModel.Payment" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="EBSModel.sysdiagram" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EBSModel.U_Code" Width="1.5" PointX="5.375" PointY="4.75" />
+        <EntityTypeShape EntityType="EBSModel.Code" Width="1.5" PointX="3" PointY="8.25" />
+        <AssociationConnector Association="EBSModel.FK__Code__C_ID__29221CFB" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,0 +1,41 @@
+﻿@model MVCProjectOOP.Models.Code
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutC.cshtml";
+
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Code Detail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.month)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.month)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.code1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.code1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Client.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Client.FirstName)
+        </dd>
+
+    </dl>
+</div>
+

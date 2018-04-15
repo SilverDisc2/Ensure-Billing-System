@@ -9,9 +9,18 @@ using System.Web.Mvc;
 using MVCProjectOOP.Models;
 
 namespace MVCProjectOOP.Controllers
+
 {
     public class CompaniesController : Controller
+
     {
+        
+        //public string show()
+        //{
+        //    ClientsController c = new ClientsController();
+        //    Payment p = new Payment();
+        //    return
+        //}
         private EBSEntities db = new EBSEntities();
 
         // GET: Companies
@@ -123,6 +132,7 @@ namespace MVCProjectOOP.Controllers
             return View(login);
         }
 
+       
 
         // GET: Companies/Delete/5
         public ActionResult Delete(int? id)

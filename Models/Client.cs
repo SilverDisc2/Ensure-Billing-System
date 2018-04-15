@@ -14,6 +14,9 @@ namespace MVCProjectOOP.Models
     
     public partial class Client:User
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+       
+    
         public int C_ID { get; set; }
         //public string FirstName { get; set; }
         //public string LastName { get; set; }
@@ -23,7 +26,20 @@ namespace MVCProjectOOP.Models
         //public string Address { get; set; }
         //public string City { get; set; }
         //public string ZIPCode { get; set; }
-        public string Status { get; set; }
-        public string UCode { get; set; }
+        public Code Code;
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Code> Codes { get; set; }
+
+
+        public void Clientt(int C_ID,  Code Code)
+        {
+            this.C_ID = C_ID;
+            this.Code = Code;
+        }
+        //public void display()
+        //{
+        //    Console.WriteLine(C_ID+ " " + Code.month + " " + Code.coID +" "+ Code.code1);
+        //}
     }
+
 }

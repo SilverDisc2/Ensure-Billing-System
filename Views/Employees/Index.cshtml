@@ -2,56 +2,69 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutComp.cshtml";
+
+
 }
 
-<h2>Employees</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-      
-        <th>
-            @Html.DisplayNameFor(model => model.Phone)
-        </th>
-      
-        
-        <th>
-            @Html.DisplayNameFor(model => model.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ZIPCode)
-        </th>
-        <th></th>
-    </tr>
+<div class="container body-content">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        
-        <td>
-            @Html.DisplayFor(modelItem => item.Phone)
-        </td>
-   
-        
-        <td>
-            @Html.DisplayFor(modelItem => item.City)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ZIPCode)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.E_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.E_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.E_ID })
-        </td>
-    </tr>
-}
+    <hr />
+    <h2>Employees</h2>
 
-</table>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+
+
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ZIPCode)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ZIPCode)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.E_ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.E_ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.E_ID })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    @*<footer>
+                    <p>&copy; @DateTime.Now.Year - EBS Application</p>
+                </footer>
+            </div>
+        </body>
+        </html>*@

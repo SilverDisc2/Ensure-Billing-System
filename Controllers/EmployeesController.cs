@@ -21,10 +21,96 @@ namespace MVCProjectOOP.Controllers
         {
             return View(db.Employees.ToList());
         }
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(Employee login)
+        {
+            if (ModelState.IsValid)
+            {
+                EBSEntities db = new EBSEntities();
+
+                var user = (from userlist in db.Employees
+                            where userlist.LastName == login.LastName && userlist.Password == login.Password
+                            select new
+                            {
+                                userlist.E_ID,
+                                userlist.LastName
+                            }).ToList();
+
+                if (user.FirstOrDefault() != null)
+                {
+                    Session["UserName"] = user.FirstOrDefault().LastName;
+                    Session["UserID"] = user.FirstOrDefault().E_ID;
+                    
+                 return RedirectToAction("Details", new { id = user.FirstOrDefault().E_ID });
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Invalid login credentials.");
+                }
+            }
+            return View(login);
+        }
+
+        public ActionResult PaymentCollection()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult PaymentCollection(Code collect)
+        {
+            if (ModelState.IsValid)
+            {
+                EBSEntities db = new EBSEntities();
+
+                var user = (from userlist in db.Codes
+                            where userlist.C_ID == collect.C_ID && userlist.code1 == collect.code1 && userlist.month==collect.month
+                            select new
+                            {
+                                userlist.coID,
+                                userlist.code1
+                            }).ToList();
+
+                if (user.FirstOrDefault() != null)
+                {
+                    //Session["UserName"] = user.FirstOrDefault().
+                    //Session["UserID"] = user.FirstOrDefault().E_ID;
+
+                    ModelState.AddModelError("", "Transaction Done Sucessfully!");
+
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Invalid Client Unique Code!");
+                }
+            }
+            return View(collect);
+        }
+
 
         // GET: Employees/Details/5
         public ActionResult Details(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Employee employee = db.Employees.Find(id);
+            if (employee == null)
+            {
+                return HttpNotFound();
+            }
+            return View(employee);
+        }
+
+        public ActionResult EDetail(int? id)
+        {
+           
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Esure Billing Application</title>
-    <link href="@Url.Content("~/Content/StyleSheet2.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/StyleSheet3.css")" rel="stylesheet" type="text/css" />
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -23,17 +23,13 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li class="dropdown">
-                        <a href="#" class="dropbtn">Login</a>
-                        <div class="dropdown-content">
-                            <a href="@Url.Action("Login","Companies")">Company</a>
-                            <a href="@Url.Action("Login","Employees")">Emplpoyee</a>
-                            <a href="@Url.Action("Login","Clients")">Client</a>
-                        </div>
+                    <li>
+                        <a href="@Url.Action("Index","Codes")"> Codes</a>
                     </li>
-                   
+                    <li>
+                        <a href="@Url.Action("Index","Companies")"> Company's Panel </a>
+                    </li>
+
                 </ul>
             </div>
         </div>

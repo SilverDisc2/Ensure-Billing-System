@@ -13,8 +13,15 @@
     <Property Name="Address" Type="varchar" MaxLength="100" />
     <Property Name="City" Type="varchar" MaxLength="50" />
     <Property Name="ZIPCode" Type="varchar" MaxLength="20" />
-    <Property Name="Status" Type="varchar" MaxLength="20" />
-    <Property Name="UCode" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Code">
+    <Key>
+      <PropertyRef Name="coID" />
+    </Key>
+    <Property Name="coID" Type="int" Nullable="false" />
+    <Property Name="month" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="C_ID" Type="int" Nullable="false" />
+    <Property Name="code" Type="nchar" MaxLength="10" Nullable="false" />
   </EntityType>
   <EntityType Name="Company">
     <Key>
@@ -64,11 +71,37 @@
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
+  <EntityType Name="U_Code">
+    <Key>
+      <PropertyRef Name="code_id" />
+    </Key>
+    <Property Name="code_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ucode" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="month" Type="nchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Code__C_ID__29221CFB">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="Code" Type="Self.Code" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="C_ID" />
+      </Principal>
+      <Dependent Role="Code">
+        <PropertyRef Name="C_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="EBSModelStoreContainer">
     <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Code" EntityType="Self.Code" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="U_Code" EntityType="Self.U_Code" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Code__C_ID__29221CFB" Association="Self.FK__Code__C_ID__29221CFB">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Code" EntitySet="Code" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

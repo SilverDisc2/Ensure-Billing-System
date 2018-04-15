@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="EBSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="EBSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="C_ID" />
@@ -18,8 +18,15 @@
           <Property Name="Address" Type="varchar" MaxLength="100" />
           <Property Name="City" Type="varchar" MaxLength="50" />
           <Property Name="ZIPCode" Type="varchar" MaxLength="20" />
-          <Property Name="Status" Type="varchar" MaxLength="20" />
-          <Property Name="UCode" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Code">
+          <Key>
+            <PropertyRef Name="coID" />
+          </Key>
+          <Property Name="coID" Type="int" Nullable="false" />
+          <Property Name="month" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="C_ID" Type="int" Nullable="false" />
+          <Property Name="code" Type="nchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="Company">
           <Key>
@@ -69,15 +76,40 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <EntityType Name="U_Code">
+          <Key>
+            <PropertyRef Name="code_id" />
+          </Key>
+          <Property Name="code_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ucode" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="month" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Code__C_ID__29221CFB">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Code" Type="Self.Code" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="C_ID" />
+            </Principal>
+            <Dependent Role="Code">
+              <PropertyRef Name="C_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="EBSModelStoreContainer">
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Code" EntityType="Self.Code" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="U_Code" EntityType="Self.U_Code" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Code__C_ID__29221CFB" Association="Self.FK__Code__C_ID__29221CFB">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Code" EntitySet="Code" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EBSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -94,8 +126,7 @@
           <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ZIPCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="UCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Codes" Relationship="EBSModel.FK__Code__C_ID__29221CFB" FromRole="Client" ToRole="Code" />
         </EntityType>
         <EntityType Name="Company">
           <Key>
@@ -151,7 +182,43 @@
           <EntitySet Name="Employees" EntityType="Self.Employee" />
           <EntitySet Name="Payments" EntityType="Self.Payment" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="U_Code" EntityType="EBSModel.U_Code" />
+          <EntitySet Name="Codes" EntityType="EBSModel.Code" />
+          <AssociationSet Name="FK__Code__C_ID__29221CFB" Association="EBSModel.FK__Code__C_ID__29221CFB">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="Code" EntitySet="Codes" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="U_Code">
+          <Key>
+            <PropertyRef Name="code_id" />
+          </Key>
+          <Property Name="code_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ucode" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="month" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Code">
+          <Key>
+            <PropertyRef Name="coID" />
+          </Key>
+          <Property Name="coID" Type="Int32" Nullable="false" />
+          <Property Name="month" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="C_ID" Type="Int32" Nullable="false" />
+          <Property Name="code1" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Client" Relationship="EBSModel.FK__Code__C_ID__29221CFB" FromRole="Code" ToRole="Client" />
+        </EntityType>
+        <Association Name="FK__Code__C_ID__29221CFB">
+          <End Type="EBSModel.Client" Role="Client" Multiplicity="1" />
+          <End Type="EBSModel.Code" Role="Code" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="C_ID" />
+            </Principal>
+            <Dependent Role="Code">
+              <PropertyRef Name="C_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -170,9 +237,7 @@
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="City" ColumnName="City" />
                 <ScalarProperty Name="ZIPCode" ColumnName="ZIPCode" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="UCode" ColumnName="UCode" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Companies">
@@ -224,6 +289,25 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="U_Code">
+            <EntityTypeMapping TypeName="EBSModel.U_Code">
+              <MappingFragment StoreEntitySet="U_Code">
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="ucode" ColumnName="ucode" />
+                <ScalarProperty Name="code_id" ColumnName="code_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Codes">
+            <EntityTypeMapping TypeName="EBSModel.Code">
+              <MappingFragment StoreEntitySet="Code">
+                <ScalarProperty Name="code1" ColumnName="code" />
+                <ScalarProperty Name="C_ID" ColumnName="C_ID" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="coID" ColumnName="coID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

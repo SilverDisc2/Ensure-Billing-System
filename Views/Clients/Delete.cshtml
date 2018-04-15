@@ -2,6 +2,9 @@
 
 @{
     ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutC.cshtml";
+
+
 }
 
 <h2>Delete</h2>
@@ -75,22 +78,9 @@
             @Html.DisplayFor(model => model.ZIPCode)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
+        
 
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UCode)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UCode)
-        </dd>
-
+        
     </dl>
 
     @using (Html.BeginForm()) {
